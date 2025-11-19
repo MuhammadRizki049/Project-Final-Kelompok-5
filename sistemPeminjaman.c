@@ -272,7 +272,23 @@ int found = 0;
     rename("tempPinjam.txt", "dipinjam.txt");
     printf("Peminjaman berhasil.\n");
 }
+void kembalikanAlat() {
+    Alat alat;
+    unsigned int id;
+    unsigned int jumlahIngindikembalikan;
+    lihatAlat();
 
+    printf("Masukkan id alat yang ingin dikembalikan: ");
+    scanf("%u", &id);
+
+    printf("Jumlah alat yang ingin dikembalikan: ");
+    scanf("%u", &jumlahIngindikembalikan);
+
+    FILE *pinjam = fopen("dipinjam.txt", "r");
+    if (pinjam == NULL) {
+        printf("Gagal membuka file dipinjam.txt!\n");
+        return;
+    }
 
 
 
