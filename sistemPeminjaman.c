@@ -290,6 +290,20 @@ void kembalikanAlat() {
         return;
     }
 
+    FILE *tempPinjam = fopen("tempPinjam.txt", "w");
+    if (tempPinjam == NULL) {
+        printf("Gagal membuka file tempPinjam.txt!\n");
+        fclose(pinjam);
+        return;
+    }
+
+    int found = 0;
+    while (fscanf(pinjam, "%u|%49[^|]|%49[^|]|%49[^|]|%u|%u|%u\n",
+            &alat.id, alat.nama, alat.merek, alat.model, &alat.tahun, &alat.jumlah, &alat.tersedia) == 7) {
+        if (alat.id == id && alat.tersedia >= jumlahIngindikembalikan) {
+            alat.tersedia -= jumlahIngindikembalikan;
+            found = 1;
+        }
 
 
 
