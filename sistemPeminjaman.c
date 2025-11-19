@@ -95,5 +95,47 @@ void menuUser() {
     } while (menu != 0);
 }
 
+void menuAdmin() {
+    int menu;
+    do {
+        printf("\n=== MENU ADMIN ===\n");
+        printf("1. Lihat Alat\n");
+        printf("2. Lihat Pinjaman\n");
+        printf("3. Tambah Alat\n");
+        printf("4. Hapus Alat\n");
+        printf("5. Edit Alat\n");
+        printf("0. Keluar Dari Menu Admin\n");
+        ulang:
+        printf("Pilih menu: ");
+        scanf("%d", &menu);
+
+        switch (menu) {
+        case 1:
+            listAlat();
+            break;
+        case 2:
+            lihatAlat();
+            break;
+        case 3:
+            tambahAlat();
+            break;
+        case 4:
+            hapusAlat();
+            break;
+        case 5:
+            editAlat();
+            break;
+        case 0:
+            printf("Keluar dari menu admin.\n");
+            break;
+        default:
+            printf("Pilihan tidak valid.\n");
+            goto ulang;
+        }
+    } while (menu != 0);
+}
+
+
+
 
 
