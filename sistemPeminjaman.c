@@ -243,7 +243,35 @@ int found = 0;
         if (pinjam) fclose(pinjam);
         return;
     }
+    int updated = 0;
+    if (pinjam != NULL) {
+        while (fscanf(pinjam, "%u|%49[^|]|%49[^|]|%49[^|]|%u|%u|%u\n",
+                &alat.id, alat.nama, alat.merek, alat.model, &alat.tahun, &alat.jumlah, &alat.tersedia) == 7) {
+            if (alat.id == id) {
+                alat.tersedia += jumlahInginDipinjam;
+                updated = 1;
+            }
+            fprintf(tempPinjam, "%u|%s|%s|%s|%u|%u|%u\n",
+                alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah, alat.tersedia);
+        }
+        fclose(pinjam);
+    }
+    if (!updated) {
 
+        FILE *fAlat2 = fopen("alat.txt", "r");
+        while (fscanf(fAlat2, "%u|%49[^|]|%49[^|]|%49[^|]|%u|%u|%u\n",
+                &alat.id, alat.nama, alat.merek, alat.model, &alat.tahun, &alat.jumlah, &alat.tersedia) == 7) {
+            if (alat.id == id) break;
+        }
+        fclose(fAlat2);
+        fprintf(tempPinjam, "%u|%s|%s|%s|%u|%u|%u\n",
+                alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah, jumlahInginDipinjam);
+    }
+    fclose(tempPinjam);
+    remove("dipinjam.txt");
+    rename("tempPinjam.txt", "dipinjam.txt");
+    printf("Peminjaman berhasil.\n");
+}
 
 
 
