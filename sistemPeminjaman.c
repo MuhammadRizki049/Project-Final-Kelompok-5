@@ -135,6 +135,17 @@ void menuAdmin() {
     } while (menu != 0);
 }
 
+void lihatAlat() {
+    FILE *file;
+    Alat alat;
+    file = fopen("dipinjam.txt", "r");
+    char baris[256];
+
+    if (file == NULL) {
+        printf("File dipinjam.txt tidak ditemukan atau belum ada yang dipinjam.\n");
+        return;
+
+
 
 
 
