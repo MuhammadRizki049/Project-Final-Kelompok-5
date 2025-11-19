@@ -144,6 +144,36 @@ void lihatAlat() {
     if (file == NULL) {
         printf("File dipinjam.txt tidak ditemukan atau belum ada yang dipinjam.\n");
         return;
+}
+
+    int c = fgetc(file);
+    if (c == EOF) {
+        fclose(file);
+        printf("Belum ada yang dipinjam.\n");
+        return;
+    }
+    ungetc(c, file);
+
+    printf("=======================================================================================\n");
+    printf("                          Data Alat Laboratorium Yang Dipinjam\n");
+    printf("=======================================================================================\n");
+    printf("%-3s | %-15s | %-10s | %-10s | %-10s | %-6s | %-8s\n",
+            "Id", "Nama Alat", "Merek", "Model", "Tahun", "Jumlah", "Dipinjam");
+    printf("=======================================================================================\n");
+    while (fgets(baris, sizeof(baris), file)) {
+        if (sscanf(baris, "%u|%49[^|]|%49[^|]|%49[^|]|%u|%u|%u",
+                    &alat.id, alat.nama, alat.merek, alat.model,
+                    &alat.tahun, &alat.jumlah, &alat.tersedia) == 7) {
+            printf("%2u | %-13s | %-10s | %-9s | %-10u | %-6u | %-8u\n",
+                    alat.id, alat.nama, alat.merek, alat.model,
+                    alat.tahun, alat.jumlah, alat.tersedia);
+        }
+    }
+    printf("=======================================================================================\n");
+    fclose(file);
+}
+
+
 
 
 
