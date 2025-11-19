@@ -44,4 +44,21 @@ int main(int argc, char *argv[]) {
             break;
         }
     }
+    fclose(fp);
+    if (!found) {
+        printf("Login gagal!\n");
+        return 0;
+    }
+    printf("Login berhasil sebagai %s!\n", argv[1]);
 
+    if (strcmp(role, "admin") == 0) {
+        menuAdmin();
+    } else if (strcmp(role, "user") == 0) {
+        menuUser();
+    }
+    return 0;
+}
+
+void menuUser() {
+    int menu;
+    do {
