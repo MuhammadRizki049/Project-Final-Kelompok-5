@@ -62,3 +62,28 @@ int main(int argc, char *argv[]) {
 void menuUser() {
     int menu;
     do {
+ printf("\n=== MENU USER ===\n");
+        printf("1. List Alat Yang Tersedia\n");
+        printf("2. Peminjaman Alat\n");
+        printf("3. List Alat Yang Dipinjam\n");
+        printf("4. Pengembalian Alat\n");
+        printf("0. Keluar Dari Menu User\n");
+        ulang:
+        printf("Pilih menu: ");
+        scanf("%d", &menu);
+
+        switch (menu) {
+        case 1:
+            listAlat();
+            break;
+        case 2:
+            pinjamAlat();
+            break;
+        case 3:
+            lihatAlat();
+            break;
+        case 4:
+            kembalikanAlat();
+            break;
+
+
