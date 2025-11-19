@@ -80,4 +80,22 @@ int main() {
     } else {
         fprintf(stderr, "Error: File input 'lirik.txt' kosong.\n");
         fclose(f_in);
+        fclose(f_out);
+        return 1;
+    }
 
+    while (fgets(line, MAX_LINE_LENGTH, f_in) != NULL) {
+        process_line(line);
+    }
+
+    for (int i = 0; i < unique_word_count; i++) {
+        fprintf(f_out, "%s=\n", unique_words[i]);
+    }
+
+    fclose(f_in);
+    fclose(f_out);
+
+    printf("Berhasil! File 'kosa-kata.word' telah dibuat dengan daftar kosa kata unik.\n");
+    return 0;
+}
+        
