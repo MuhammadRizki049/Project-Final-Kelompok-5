@@ -224,6 +224,26 @@ int found = 0;
         }
         fprintf(tempAlat, "%u|%s|%s|%s|%u|%u|%u\n",
 
+    alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah, alat.tersedia);
+    }
+    fclose(fAlat);
+    fclose(tempAlat);
+    remove("alat.txt");
+    rename("tempAlat.txt", "alat.txt");
+
+    if (!found) {
+        printf("Alat tidak ditemukan atau jumlah tersedia kurang!\n");
+        return;
+    }
+
+    FILE *pinjam = fopen("dipinjam.txt", "r");
+    FILE *tempPinjam = fopen("tempPinjam.txt", "w");
+    if (tempPinjam == NULL) {
+        printf("Gagal membuka file tempPinjam.txt!\n");
+        if (pinjam) fclose(pinjam);
+        return;
+    }
+
 
 
 
