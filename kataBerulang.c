@@ -65,5 +65,19 @@ int main() {
         return 1; 
     }
 
+     f_out = fopen("kosa-kata.word", "w");
+    if (f_out == NULL) {
+        perror("Error: Tidak dapat membuat file 'kosa-kata.word'");
+        fclose(f_in); 
+        return 1;
+    }
 
+    if (fgets(line, MAX_LINE_LENGTH, f_in) != NULL) {
+        line[strcspn(line, "\n")] = 0;
+        line[strcspn(line, "\r")] = 0; 
+        
+        fprintf(f_out, "%s\n", line); 
+    } else {
+        fprintf(stderr, "Error: File input 'lirik.txt' kosong.\n");
+        fclose(f_in);
 
