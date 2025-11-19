@@ -48,3 +48,22 @@ void process_line(char* line) {
         }
     }
     
+    if (word_index > 0) {
+        current_word[word_index] = '\0';
+        add_unique_word(current_word);
+    }
+}
+
+int main() {
+    FILE *f_in, *f_out;
+    char line[MAX_LINE_LENGTH];
+
+    f_in = fopen("lirik.txt", "r");
+    if (f_in == NULL) {
+        perror("Error: Tidak dapat membuka file 'lirik.txt'");
+        printf("Pastikan Anda sudah membuat file lirik.txt di folder yang sama.\n");
+        return 1; 
+    }
+
+
+
