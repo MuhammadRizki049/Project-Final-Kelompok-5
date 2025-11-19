@@ -85,5 +85,15 @@ void menuUser() {
         case 4:
             kembalikanAlat();
             break;
+        case 0:
+            printf("Keluar dari menu user.\n");
+            break;
+        default:
+            printf("Pilihan tidak valid.\n");
+            goto ulang;
+        }
+    } while (menu != 0);
+}
+
 
 
