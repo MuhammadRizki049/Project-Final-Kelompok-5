@@ -215,7 +215,14 @@ void pinjamAlat() {
         fclose(fAlat);
         return;
     }
-
+int found = 0;
+    while (fscanf(fAlat, "%u|%49[^|]|%49[^|]|%49[^|]|%u|%u|%u\n",
+                &alat.id, alat.nama, alat.merek, alat.model, &alat.tahun, &alat.jumlah, &alat.tersedia) == 7) {
+        if (alat.id == id && alat.tersedia >= jumlahInginDipinjam) {
+            alat.tersedia -= jumlahInginDipinjam;
+            found = 1;
+        }
+        fprintf(tempAlat, "%u|%s|%s|%s|%u|%u|%u\n",
 
 
 
