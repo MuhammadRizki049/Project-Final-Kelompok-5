@@ -191,6 +191,30 @@ void listAlat() {
     }
     fclose(file);
 }
+void pinjamAlat() {
+    Alat alat;
+    unsigned int id;
+    unsigned int jumlahInginDipinjam;
+    listAlat();
+
+    printf("Masukkan id alat yang ingin dipinjam: ");
+    scanf("%u", &id);
+
+    printf("Jumlah alat yang ingin dipinjam: ");
+    scanf("%u", &jumlahInginDipinjam);
+
+    FILE *fAlat = fopen("alat.txt", "r");
+    if (fAlat == NULL) {
+        printf("Gagal membuka file alat.txt!\n");
+        return;
+    }
+
+    FILE *tempAlat = fopen("tempAlat.txt", "w");
+    if (tempAlat == NULL) {
+        printf("Gagal membuka file tempAlat.txt!\n");
+        fclose(fAlat);
+        return;
+    }
 
 
 
