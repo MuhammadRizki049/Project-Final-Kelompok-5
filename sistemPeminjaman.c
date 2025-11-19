@@ -172,7 +172,25 @@ void lihatAlat() {
     printf("=======================================================================================\n");
     fclose(file);
 }
+void listAlat() {
+    FILE *file;
+    file = fopen("alat.txt", "r");
+    Alat alat;
 
+    if (file == NULL) {
+        printf("File alat.txt tidak dapat ditemukan\n");
+        return;
+    }
+    printf("\n=== DAFTAR ALAT LABORATORIUM YANG TERSEDIA ===\n");
+    printf("ID      | NAMA        | MEREK    | MODEL   | TAHUN PRODUKSI   | JUMLAH UNIT   | TERSEDIA   \n");
+
+    while (fscanf(file, "%u|%49[^|]|%49[^|]|%49[^|]|%u|%u|%u\n",
+                &alat.id, alat.nama, alat.merek, alat.model, &alat.tahun, &alat.jumlah, &alat.tersedia) == 7) {
+        printf("%2u | %-13s | %-10s | %-9s | %-18u | %-15u | %-12u\n",
+                alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah, alat.tersedia);
+    }
+    fclose(file);
+}
 
 
 
