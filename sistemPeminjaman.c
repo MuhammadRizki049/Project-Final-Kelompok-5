@@ -304,6 +304,22 @@ void kembalikanAlat() {
             alat.tersedia -= jumlahIngindikembalikan;
             found = 1;
         }
+    if (alat.tersedia > 0) {
+    fprintf(tempPinjam, "%u|%s|%s|%s|%u|%u|%u\n",
+            alat.id, alat.nama, alat.merek, alat.model,
+            alat.tahun, alat.jumlah, alat.tersedia);
+}
+
+fclose(pinjam);
+fclose(tempPinjam);
+
+remove("dipinjam.txt");
+rename("tempPinjam.txt", "dipinjam.txt");
+
+if (!found) {
+    printf("Alat tidak ditemukan atau jumlah dipinjam kurang!\n");
+    return;
+}
 
 
 
