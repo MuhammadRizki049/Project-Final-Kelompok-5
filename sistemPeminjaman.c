@@ -393,4 +393,5 @@ void hapusAlat() {
     else
         printf("Alat dengan id %d tidak ada di dalam daftar.\n", hapusId);
 }
-
+void editAlat() {
+    FILE *temp, *file;
