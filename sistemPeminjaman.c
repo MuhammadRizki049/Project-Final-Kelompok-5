@@ -354,5 +354,43 @@ remove("alat.txt");
 rename("tempAlat.txt", "alat.txt");
 
 printf("Pengembalian berhasil.\n");
+void hapusAlat() {
+    FILE *temp, *file;
+    data alat;
 
+    file = fopen("alat.txt", "r");
+    temp = fopen("temp.txt", "w");
+
+    if (file == NULL) {
+        printf("Gagal membuka file alat.txt\n");
+        return;
+    }
+
+    int hapusId;
+    printf("Masukkan ID alat yang mau anda hapus: ");
+    scanf("%d", &hapusId);
+
+    int ditemukan = 0;
+
+    while (fgets(alat.simpan, sizeof(alat.simpan), file) != NULL) {
+        sscanf(alat.simpan, "%u|", &alat.id);
+
+        if (alat.id != hapusId) {
+            fputs(alat.simpan, temp);
+        } else {
+            ditemukan = 1;
+        }
+    }
+
+    fclose(file);
+    fclose(temp);
+
+    remove("alat.txt");
+    rename("temp.txt", "alat.txt");
+
+    if (ditemukan)
+        printf("Alat dengan id %d sudah dihapus.\n", hapusId);
+    else
+        printf("Alat dengan id %d tidak ada di dalam daftar.\n", hapusId);
+}
 
