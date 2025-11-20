@@ -320,6 +320,39 @@ if (!found) {
     printf("Alat tidak ditemukan atau jumlah dipinjam kurang!\n");
     return;
 }
+FILE *fAlat = fopen("alat.txt", "r");
+FILE *tempAlat = fopen("tempAlat.txt", "w");
 
+if (tempAlat == NULL) {
+    printf("Gagal membuka file tempAlat.txt!\n");
+    if (fAlat) fclose(fAlat);
+    return;
+}
+
+int updated = 0;
+
+if (fAlat != NULL) {
+    while (fscanf(fAlat, "%u|%49[^|]|%49[^|]|%49[^|]|%u|%u|%u\n",
+            &alat.id, alat.nama, alat.merek, alat.model,
+            &alat.tahun, &alat.jumlah, &alat.tersedia) == 7) {
+
+        if (alat.id == id) {
+            alat.tersedia += jumlahIngindikembalikan;
+            updated = 1;
+        }
+
+        fprintf(tempAlat, "%u|%s|%s|%s|%u|%u|%u\n",
+                alat.id, alat.nama, alat.merek, alat.model,
+                alat.tahun, alat.jumlah, alat.tersedia);
+    }
+    fclose(fAlat);
+}
+
+fclose(tempAlat);
+
+remove("alat.txt");
+rename("tempAlat.txt", "alat.txt");
+
+printf("Pengembalian berhasil.\n");
 
 
