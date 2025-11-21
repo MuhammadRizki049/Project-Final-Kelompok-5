@@ -395,3 +395,86 @@ void hapusAlat() {
 }
 void editAlat() {
     FILE *temp, *file;
+    file = fopen("alat.txt", "r");
+    temp = fopen("temp.txt", "w");
+
+    if (file == NULL) {
+        printf("Gagal membuka file alat.txt\n");
+        return;
+    }
+
+    int editId;
+    printf("Masukkan id yang mau anda edit: ");
+    scanf("%d", &editId);
+
+    data alat;
+    int ditemukan = 0;
+
+    while (fgets(alat.simpan, sizeof(alat.simpan), file) != NULL) {
+        int uraian = sscanf(alat.simpan, "%u|%49[^|]|%49[^|]|%49[^|]|%u|%u|%u",
+                            &alat.id, alat.nama, alat.merek, alat.model,
+                            &alat.tahun, &alat.jumlah, &alat.tersedia);
+        if (uraian != 7) {
+            fputs(alat.simpan, temp);
+            continue;
+        }
+        if (alat.id == editId) {
+            ditemukan = 1;
+            printf("Masukkan nama alat baru: ");
+            scanf(" %49[^\n]", alat.nama);
+            printf("Masukkan merk alat baru: ");
+            scanf(" %49[^\n]", alat.merek);
+            printf("Masukkan model alat baru: ");
+            scanf(" %49[^\n]", alat.model);
+            printf("Masukkan tahun alat baru: ");
+            scanf("%u", &alat.tahun);
+            printf("Masukkan jumlah alat baru: ");
+            scanf("%u", &alat.jumlah);
+            alat.tersedia = alat.jumlah;
+            fprintf(temp, "%u|%s|%s|%s|%u|%u|%u\n", alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah, alat.tersedia);
+        } else {
+            fputs(alat.simpan, temp);
+        }
+    }
+
+    fclose(file);
+    fclose(temp);
+    remove("alat.txt");
+    rename("temp.txt", "alat.txt");
+
+    if (ditemukan) {
+        printf("Alat dengan id %d sudah diupdate.\n", editId);
+    } else {
+        printf("Alat dengan id %d tidak ada di dalam daftar.\n", editId);
+    }
+}
+
+void tambahAlat() {
+    FILE *file;
+    data alat;
+
+    file = fopen("alat.txt", "a");
+    if (file == NULL) {
+        printf("Gagal membuka file alat.txt\n");
+        return;
+    }
+
+    printf("======= Silahkan masukkan data alat baru =======\n");
+    printf("Masukkan id alat baru: ");
+    scanf("%u", &alat.id);
+    printf("Masukkan nama alat baru yang mau ditambahkan: ");
+    scanf(" %49[^\n]", alat.nama);
+    printf("Masukkan merk alat baru yang mau ditambahkan: ");
+    scanf(" %49[^\n]", alat.merek);
+    printf("Masukkan model alat baru yang mau ditambahkan: ");
+    scanf(" %49[^\n]", alat.model);
+    printf("Masukkan tahun alat baru yang mau ditambahkan: ");
+    scanf("%u", &alat.tahun);
+    printf("Masukkan jumlah alat baru yang mau ditambahkan: ");
+    scanf("%u", &alat.jumlah);
+    alat.tersedia = alat.jumlah;
+
+    fprintf(file, "%u|%s|%s|%s|%u|%u|%u\n", alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah, alat.tersedia);
+    fclose(file);
+    printf("Alat berhasil ditambahkan.\n");
+}
