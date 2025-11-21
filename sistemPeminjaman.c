@@ -478,3 +478,25 @@ void tambahAlat() {
     fclose(file);
     printf("Alat berhasil ditambahkan.\n");
 }
+if (uraian != 7) {
+            fputs(alat.simpan, temp);
+            continue;
+        }
+        if (alat.id == editId) {
+            ditemukan = 1;
+            printf("Masukkan nama alat baru: ");
+            scanf(" %49[^\n]", alat.nama);
+            printf("Masukkan merk alat baru: ");
+            scanf(" %49[^\n]", alat.merek);
+            printf("Masukkan model alat baru: ");
+            scanf(" %49[^\n]", alat.model);
+            printf("Masukkan tahun alat baru: ");
+            scanf("%u", &alat.tahun);
+            printf("Masukkan jumlah alat baru: ");
+            scanf("%u", &alat.jumlah);
+            alat.tersedia = alat.jumlah;
+            fprintf(temp, "%u|%s|%s|%s|%u|%u|%u\n", alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah, alat.tersedia);
+        } else {
+            fputs(alat.simpan, temp);
+        }
+    }
