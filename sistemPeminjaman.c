@@ -223,8 +223,7 @@ int found = 0;
             found = 1;
         }
         fprintf(tempAlat, "%u|%s|%s|%s|%u|%u|%u\n",
-
-    alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah, alat.tersedia);
+                alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah, alat.tersedia);
     }
     fclose(fAlat);
     fclose(tempAlat);
@@ -308,7 +307,8 @@ void kembalikanAlat() {
     fprintf(tempPinjam, "%u|%s|%s|%s|%u|%u|%u\n",
             alat.id, alat.nama, alat.merek, alat.model,
             alat.tahun, alat.jumlah, alat.tersedia);
-}
+        }
+    }
 
 fclose(pinjam);
 fclose(tempPinjam);
@@ -352,8 +352,8 @@ fclose(tempAlat);
 
 remove("alat.txt");
 rename("tempAlat.txt", "alat.txt");
-
 printf("Pengembalian berhasil.\n");
+}
 void hapusAlat() {
     FILE *temp, *file;
     data alat;
@@ -463,69 +463,6 @@ void tambahAlat() {
     printf("Masukkan id alat baru: ");
     scanf("%u", &alat.id);
     printf("Masukkan nama alat baru yang mau ditambahkan: ");
-    scanf(" %49[^\n]", alat.nama);
-    printf("Masukkan merk alat baru yang mau ditambahkan: ");
-    scanf(" %49[^\n]", alat.merek);
-    printf("Masukkan model alat baru yang mau ditambahkan: ");
-    scanf(" %49[^\n]", alat.model);
-    printf("Masukkan tahun alat baru yang mau ditambahkan: ");
-    scanf("%u", &alat.tahun);
-    printf("Masukkan jumlah alat baru yang mau ditambahkan: ");
-    scanf("%u", &alat.jumlah);
-    alat.tersedia = alat.jumlah;
-
-    fprintf(file, "%u|%s|%s|%s|%u|%u|%u\n", alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah, alat.tersedia);
-    fclose(file);
-    printf("Alat berhasil ditambahkan.\n");
-}
-if (uraian != 7) {
-            fputs(alat.simpan, temp);
-            continue;
-        }
-        if (alat.id == editId) {
-            ditemukan = 1;
-            printf("Masukkan nama alat baru: ");
-            scanf(" %49[^\n]", alat.nama);
-            printf("Masukkan merk alat baru: ");
-            scanf(" %49[^\n]", alat.merek);
-            printf("Masukkan model alat baru: ");
-            scanf(" %49[^\n]", alat.model);
-            printf("Masukkan tahun alat baru: ");
-            scanf("%u", &alat.tahun);
-            printf("Masukkan jumlah alat baru: ");
-            scanf("%u", &alat.jumlah);
-            alat.tersedia = alat.jumlah;
-            fprintf(temp, "%u|%s|%s|%s|%u|%u|%u\n", alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah, alat.tersedia);
-        } else {
-            fputs(alat.simpan, temp);
-        }
-    }
-fclose(file);
-    fclose(temp);
-    remove("alat.txt");
-    rename("temp.txt", "alat.txt");
-
-    if (ditemukan) {
-        printf("Alat dengan id %d sudah diupdate.\n", editId);
-    } else {
-        printf("Alat dengan id %d tidak ada di dalam daftar.\n", editId);
-    }
-}
-
-void tambahAlat() {
-    FILE *file;
-    data alat;
-
-    file = fopen("alat.txt", "a");
-    if (file == NULL) {
-        printf("Gagal membuka file alat.txt\n");
-        return;
-    }
-
-    printf("======= Silahkan masukkan data alat baru =======\n");
-    printf("Masukkan id alat baru: ");
-    scanf("%u", &alat.id);
-printf("Masukkan nama alat baru yang mau ditambahkan: ");
     scanf(" %49[^\n]", alat.nama);
     printf("Masukkan merk alat baru yang mau ditambahkan: ");
     scanf(" %49[^\n]", alat.merek);
