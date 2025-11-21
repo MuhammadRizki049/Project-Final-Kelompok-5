@@ -500,3 +500,28 @@ if (uraian != 7) {
             fputs(alat.simpan, temp);
         }
     }
+fclose(file);
+    fclose(temp);
+    remove("alat.txt");
+    rename("temp.txt", "alat.txt");
+
+    if (ditemukan) {
+        printf("Alat dengan id %d sudah diupdate.\n", editId);
+    } else {
+        printf("Alat dengan id %d tidak ada di dalam daftar.\n", editId);
+    }
+}
+
+void tambahAlat() {
+    FILE *file;
+    data alat;
+
+    file = fopen("alat.txt", "a");
+    if (file == NULL) {
+        printf("Gagal membuka file alat.txt\n");
+        return;
+    }
+
+    printf("======= Silahkan masukkan data alat baru =======\n");
+    printf("Masukkan id alat baru: ");
+    scanf("%u", &alat.id);
