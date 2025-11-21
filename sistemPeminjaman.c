@@ -525,3 +525,19 @@ void tambahAlat() {
     printf("======= Silahkan masukkan data alat baru =======\n");
     printf("Masukkan id alat baru: ");
     scanf("%u", &alat.id);
+printf("Masukkan nama alat baru yang mau ditambahkan: ");
+    scanf(" %49[^\n]", alat.nama);
+    printf("Masukkan merk alat baru yang mau ditambahkan: ");
+    scanf(" %49[^\n]", alat.merek);
+    printf("Masukkan model alat baru yang mau ditambahkan: ");
+    scanf(" %49[^\n]", alat.model);
+    printf("Masukkan tahun alat baru yang mau ditambahkan: ");
+    scanf("%u", &alat.tahun);
+    printf("Masukkan jumlah alat baru yang mau ditambahkan: ");
+    scanf("%u", &alat.jumlah);
+    alat.tersedia = alat.jumlah;
+
+    fprintf(file, "%u|%s|%s|%s|%u|%u|%u\n", alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah, alat.tersedia);
+    fclose(file);
+    printf("Alat berhasil ditambahkan.\n");
+}
